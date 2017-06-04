@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add Trip</title>
+    {% load staticfiles %}
+  </head>
+  <body>
+    <h2>Add a Trip</h2>
+    <form action="/process" method="post">
+      {% csrf_token%}
+      <fieldset>
+            <div>
+                <label for="destination">Destination:</label>
+                <input id="destination" name="destination" type="text" placeholder="Destination">
+            </div>
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'first_name' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            <div>
+                <label for="plan">Description:</label>
+                <input id="plan" name="plan" type="text" placeholder="Description">
+            </div>
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'last_name' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'email' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            <div>
+                <label for="start_date">Travel Date From:</label>
+                <input id="start_date" name="start_date" type="datetime" placeholder="Start Date">
+            </div>
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'password' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            <div>
+                <label for="end_date">Travel Date To:</label>
+                <input id="end_date" name="end_date" type="datetime" placeholder="End Date">
+            </div>
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'c_password' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            <div>
+                <button type="submit">Add</button>
+            </div>
+      </fieldset>
+  </body>
+</html>

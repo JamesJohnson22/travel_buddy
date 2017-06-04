@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    {% load staticfiles %}
+  </head>
+  <body>
+    <h2>Registration</h2>
+    <form action="/register" method="post">
+      {% csrf_token%}
+      <fieldset>
+            <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Name">
+            </div>
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'first_name' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            <div>
+                <label for="username">Username</label>
+                <input id="username" name="username" type="text" placeholder="Username">
+            </div>
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'last_name' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'email' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            <div>
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" placeholder="Password">
+            </div>
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'password' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            <div>
+                <label for="c_password">Confirm Password</label>
+                <input id="c_password" name="c_password" type="password" placeholder="Password">
+            </div>
+
+            {% for message in messages %}
+              {% if message.extra_tags == 'c_password' %}
+              <p class="{{ message.tags }}">{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+
+            <div>
+                <button type="submit">Register</button>
+            </div>
+      </fieldset>
+    </form>
+    <h2>Login</h2>
+    <form action="/login" method="post">
+      {% csrf_token%}
+      <fieldset>
+        <div>
+          <label for="username">Username</label>
+          <input id="username" name="username" type="username" placeholder="Username">
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Password">
+        </div>
+
+        {% for message in messages %}
+          {% if message.extra_tags == 'login-error' %}
+          <p class="{{ message.tags }}">{{ message }}</p>
+          {% endif %}
+        {% endfor %}
+
+        <div>
+            <button type="submit" >Sign In</button>
+        </div>
+      </fieldset>
+    </form>
+  </body>
+</html>
